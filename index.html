@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>狗狗歲數計算器</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>狗狗歲數計算器</h1>
+
+    <form id="ageForm" class="card" aria-describedby="result">
+      <label for="birthday">狗狗生日</label>
+      <!-- 日期輸入支援日曆選單＋手動輸入 -->
+      <input type="date" id="birthday" name="birthday" required />
+
+      <fieldset class="size-fieldset" aria-label="狗狗體型">
+        <legend>狗狗體型</legend>
+        <label><input type="radio" name="size" value="small" checked /> 小型犬</label>
+        <label><input type="radio" name="size" value="medium" /> 中型犬</label>
+        <label><input type="radio" name="size" value="large" /> 大型犬</label>
+      </fieldset>
+
+      <button type="submit" id="calcBtn">開始計算</button>
+    </form>
+
+    <section id="result" class="result" aria-live="polite"></section>
+
+    <footer class="note">
+      <small>
+        年齡換算參考來源：
+        <a href="https://hehopets.com/age-conversion" target="_blank">
+          https://hehopets.com/age-conversion
+        </a>
+      </small>
+    </footer>
+  </main>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+</body>
+</html>

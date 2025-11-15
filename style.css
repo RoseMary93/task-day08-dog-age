@@ -1,0 +1,114 @@
+:root {
+  --bg: #0f1724;
+  --card: #0b1220;
+  --accent: #60a5fa;
+  --muted: #94a3b8;
+  --text: #e6eef8;
+  --radius: 14px;
+  --card-padding: 18px;
+  --input-bg: rgba(255, 255, 255, 0.12);
+  --input-border: rgba(255, 255, 255, 0.2);
+
+  font-family: "Noto Sans TC", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: linear-gradient(180deg, #071029 0%, var(--bg) 100%);
+  color: var(--text);
+}
+
+.container {
+  max-width: 720px;
+  margin: 48px auto;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 18px;
+  text-align: center;
+  color: var(--accent);
+  font-size: 1.7rem;
+}
+
+.card {
+  background: rgba(255,255,255,0.05);
+  border-radius: var(--radius);
+  padding: var(--card-padding);
+  box-shadow: 0 6px 24px rgba(2,6,23,0.6);
+  display: grid;
+  gap: 12px;
+}
+
+label {
+  display: block;
+  font-size: 0.95rem;
+}
+
+/* 🚀 輸入框顏色調淺 */
+input[type="date"] {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+.size-fieldset {
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.size-fieldset legend {
+  display: none;
+}
+
+button#calcBtn {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(90deg, var(--accent), #3b82f6);
+  color: #042031;
+  font-weight: 600;
+}
+
+.result {
+  margin-top: 18px;
+  min-height: 64px;
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.04);
+  text-align: center;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.note {
+  margin-top: 14px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.note a {
+  color: var(--accent);
+}
