@@ -7,6 +7,7 @@
 
   const form = document.getElementById('ageForm');
   const resultEl = document.getElementById('result');
+  const birthdayInput = document.getElementById('birthday');
 
   function round2(n) {
     return Math.round(n * 100) / 100;
@@ -48,15 +49,37 @@
 
   function formatResult(dogAge, humanAge) {
     return `
-      狗狗現在為 <strong>${round2(dogAge)}</strong> 歲狗年齡，<br>
-      換算成人類年齡大概是 <strong>${round2(humanAge)}</strong> 歲
+      狗狗現在為 <span class="highlight">${round2(dogAge)}</span> 歲狗年齡，<br>
+      換算成人類年齡大概是 <span class="highlight">${round2(humanAge)}</span> 歲
     `;
   }
 
+  /* 🔥 載入 localStorage */
+  function loadLastData() {
+    const savedBirthday = localStorage.getItem("birthday");
+    const savedSize = localStorage.getItem("dogSize");
+    const savedResult = localStorage.getItem("resultHTML");
+
+    if (savedBirthday) birthdayInput.value = savedBirthday;
+    if (savedSize) {
+      const radio = form.querySelector(`input[name="size"][value="${savedSize}"]`);
+      if (radio) radio.checked = true;
+    }
+    if (savedResult) resultEl.innerHTML = savedResult;
+  }
+
+  /* 🔥 儲存至 localStorage */
+  function saveData(birthday, size, resultHTML) {
+    localStorage.setItem("birthday", birthday);
+    localStorage.setItem("dogSize", size);
+    localStorage.setItem("resultHTML", resultHTML);
+  }
+
+  /* 🚀 表單送出事件 */
   form.addEventListener('submit', e => {
     e.preventDefault();
 
-    const birthdayStr = document.getElementById('birthday').value;
+    const birthdayStr = birthdayInput.value;
     if (!birthdayStr) {
       resultEl.innerHTML = `<div class="msg msg--error">請先選擇狗狗生日！</div>`;
       return;
@@ -68,6 +91,13 @@
     const dogAge = calcDogAge(birthday);
     const humanAge = dogToHuman(dogAge, size);
 
-    resultEl.innerHTML = `<div class="msg msg--ok">${formatResult(dogAge, humanAge)}</div>`;
+    const html = `<div class="msg msg--ok">${formatResult(dogAge, humanAge)}</div>`;
+    resultEl.innerHTML = html;
+
+    /* ⭐ 儲存 */
+    saveData(birthdayStr, size, html);
   });
+
+  /* ⭐ 一載入頁面就讀取 */
+  loadLastData();
 })();
